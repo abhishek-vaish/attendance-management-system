@@ -1,21 +1,21 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-require("dot-env").config();
-const { DBConnection } = require("./resources");
+const { Connection } = require("./database/connection");
+require("dotenv").config();
 
-export class App {
+class App {
   #dbURI;
   app;
   dbConnection;
 
   constructor() {
-    this.#dbURI = `${process.env.DIALECT}://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.HOSTNAME}:${process.env.PORT}/${process.env.DBNAME}`;
+    this.#dbURI = `${process.env.DIALECT}://${process.env.USER}:${process.env.DBPASSWORD}@${process.env.HOST}:${process.env.PORT}/${process.env.DBNAME}`;
     this.app = express();
     this.app.use(cors());
     this.app.use(cookieParser());
-    this.dbConnection = new DBConnection(this.#dbURI);
-    this.dbConnection.connect();
+    this.dbConnection = new Connection(this.#dbURI);
+    this.dbConnection.authenticate();
   }
 
   listen() {
@@ -24,3 +24,7 @@ export class App {
     });
   }
 }
+
+module.exports = {
+  App,
+};
