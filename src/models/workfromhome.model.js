@@ -19,7 +19,8 @@ const WorkFromHome = connection.sequelize.define("WorkFromHome", {
   },
 });
 
-Users.hasMany(WorkFromHome, { foreignKey: "user" });
-WorkFromHome.belongsTo(Users, { foreignKey: "user" });
-
+WorkFromHome.associate = (models) => {
+  Users.hasMany(models.WorkFromHome, { foreignKey: "user" });
+  WorkFromHome.belongsTo(models.Users, { foreignKey: "user" });
+};
 module.exports = WorkFromHome;
