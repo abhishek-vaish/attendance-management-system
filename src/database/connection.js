@@ -6,7 +6,9 @@ class Connection {
 
   constructor() {
     this.#dbURI = `${process.env.DIALECT}://${process.env.USER}:${process.env.DBPASSWORD}@${process.env.HOST}:${process.env.PORT}/${process.env.DBNAME}`;
-    this.sequelize = new Sequelize(this.#dbURI);
+    this.sequelize = new Sequelize(this.#dbURI, {
+      define: { freezeTableName: true },
+    });
   }
 
   authenticate() {

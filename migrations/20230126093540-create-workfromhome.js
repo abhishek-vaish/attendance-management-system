@@ -22,8 +22,14 @@ module.exports = {
       punch_time: {
         type: Sequelize.TIME,
       },
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE,
+      createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
+      },
     });
   },
 

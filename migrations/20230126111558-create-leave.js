@@ -42,8 +42,14 @@ module.exports = {
       approval_date: {
         type: Sequelize.DATE,
       },
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE,
+      createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
+      },
     });
   },
 

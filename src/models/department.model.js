@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
-const { app } = require("./index");
+const { connection } = require("../database/connection");
 
-module.exports = app.sequelize.define("Departments", {
+const Departments = connection.sequelize.define("Departments", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -13,3 +13,5 @@ module.exports = app.sequelize.define("Departments", {
   },
   is_active: Sequelize.BOOLEAN,
 });
+
+module.exports = Departments;

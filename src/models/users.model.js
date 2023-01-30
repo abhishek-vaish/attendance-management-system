@@ -1,7 +1,9 @@
 const Sequelize = require("sequelize");
-const { app, Departments, Positions } = require("./index");
+const { connection } = require("../database/connection");
+const Departments = require("./department.model");
+const Positions = require("./position.model");
 
-module.exports = app.sequelize.define("Users", {
+const Users = connection.sequelize.define("Users", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -39,3 +41,5 @@ Users.belongsTo(Departments, { foreignKey: "department" });
 
 Positions.hasMany(Users, { foreignKey: "position" });
 Users.belongsTo(Positions, { foreignKey: "position" });
+
+module.exports = Users;

@@ -1,7 +1,8 @@
 const Sequelize = require("sequelize");
-const { app, Authentication } = require(".");
+const { connection } = require("../database/connection");
+const Authentication = require("./authentication.model");
 
-module.exports = app.sequelize.define("Token", {
+const Token = connection.sequelize.define("Token", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -17,3 +18,5 @@ module.exports = app.sequelize.define("Token", {
 
 Authentication.hasOne(Token, { foreignKey: "authentication" });
 Token.belongsTo(Authentication, { foreignKey: "authentication" });
+
+module.exports = Token;

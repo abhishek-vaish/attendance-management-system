@@ -14,8 +14,14 @@ module.exports = {
         allowNull: false,
       },
       is_active: Sequelize.BOOLEAN,
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE,
+      createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
+      },
     });
   },
 
