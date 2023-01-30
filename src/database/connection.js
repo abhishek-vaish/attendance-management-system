@@ -2,9 +2,13 @@ const { Sequelize } = require("sequelize");
 
 class Connection {
   sequelize;
+  #dbURI;
 
-  constructor(dbURI) {
-    this.sequelize = new Sequelize(dbURI);
+  constructor() {
+    this.#dbURI = `${process.env.DIALECT}://${process.env.USER}:${process.env.DBPASSWORD}@${process.env.HOST}:${process.env.PORT}/${process.env.DBNAME}`;
+    this.sequelize = new Sequelize(this.#dbURI, {
+      define: { freezeTableName: true },
+    });
   }
 
   authenticate() {
@@ -20,6 +24,4 @@ class Connection {
   }
 }
 
-module.exports = {
-  Connection,
-};
+exports.connection = new Connection();

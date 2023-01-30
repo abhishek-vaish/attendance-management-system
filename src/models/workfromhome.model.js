@@ -1,7 +1,8 @@
 const Sequelize = require("sequelize");
-const { app, User } = require(".");
+const { connection } = require("../database/connection");
+const Users = require("./users.model");
 
-module.exports = app.sequelize.define("WorkFromHome", {
+const WorkFromHome = connection.sequelize.define("WorkFromHome", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -18,5 +19,7 @@ module.exports = app.sequelize.define("WorkFromHome", {
   },
 });
 
-User.hasMany(WorkFromHome, { foreignKey: "user" });
-WorkFromHome.belongsTo(User, { foreignKey: "user" });
+Users.hasMany(WorkFromHome, { foreignKey: "user" });
+WorkFromHome.belongsTo(Users, { foreignKey: "user" });
+
+module.exports = WorkFromHome;

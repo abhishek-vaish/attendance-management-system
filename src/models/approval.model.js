@@ -1,7 +1,9 @@
 const Sequelize = require("sequelize");
-const { app, Approvals, Leave, Users } = require(".");
+const { connection } = require("../database/connection");
+const Leave = require("./leave.models");
+const Users = require("./users.model");
 
-module.exports = app.sequelize.define("Approvals", {
+const Approvals = connection.sequelize.define("Approvals", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -26,3 +28,5 @@ Leave.belongsTo(Users, { foreignKey: "report_manager" });
 
 Users.hasMany(Leave, { foreignKey: "project_manager" });
 Leave.belongsTo(Users, { foreignKey: "project_manager" });
+
+module.exports = Approvals;
