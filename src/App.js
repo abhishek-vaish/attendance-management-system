@@ -4,7 +4,8 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const connection = require("./database/connection");
-const router = require("./routes/authentication.routes");
+const authRouter = require("./routes/authentication.routes");
+const userRouter = require("./routes/user.routes");
 
 class App {
   expressApp;
@@ -15,7 +16,8 @@ class App {
     this.expressApp.use(cors());
     this.expressApp.use(cookieParser());
     connection.connection.authenticate();
-    this.expressApp.use("/api/v1", router);
+    this.expressApp.use("/api/v1", authRouter);
+    this.expressApp.use("/api/v1", userRouter);
   }
 
   listen() {
