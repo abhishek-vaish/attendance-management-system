@@ -1,4 +1,6 @@
-const { App } = require("./App");
+const app = require("./App");
+require("dotenv").config();
 
-const app = new App();
-app.listen();
+app.app.listen();
+
+module.exports = app;
