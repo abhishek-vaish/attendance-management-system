@@ -39,7 +39,9 @@ const Leave = connection.sequelize.define("Leave", {
   },
 });
 
-Users.hasMany(Leave, { foreignKey: "user" });
-Leave.belongsTo(Users, { foreignKey: "user" });
+Leave.associate = (models) => {
+  Users.hasMany(models.Leave, { foreignKey: "user" });
+  Leave.belongsTo(models.Users, { foreignKey: "user" });
+};
 
 module.exports = Leave;

@@ -16,7 +16,8 @@ const Token = connection.sequelize.define("Token", {
   },
 });
 
-Authentication.hasOne(Token, { foreignKey: "authentication" });
-Token.belongsTo(Authentication, { foreignKey: "authentication" });
-
+Token.associate = (models) => {
+  Authentication.hasOne(models.Token, { foreignKey: "authentication" });
+  Token.belongsTo(models.Authentication, { foreignKey: "authentication" });
+};
 module.exports = Token;

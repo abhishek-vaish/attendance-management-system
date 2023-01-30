@@ -24,7 +24,9 @@ const Authentication = connection.sequelize.define("Authentication", {
   },
 });
 
-Users.hasOne(Authentication, { foreignKey: "user" });
-Authentication.belongsTo(Users, { foreignKey: "user" });
+Authentication.associate = (models) => {
+  Users.hasOne(models.Authentication, { foreignKey: "user" });
+  Authentication.belongsTo(models.Users, { foreignKey: "user" });
+};
 
 module.exports = Authentication;
