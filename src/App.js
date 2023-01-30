@@ -15,9 +15,6 @@ class App {
     this.expressApp.use(cors());
     this.expressApp.use(cookieParser());
     connection.connection.authenticate();
-    this.expressApp
-      .route("/")
-      .get((req, res) => res.send("Welcome to Attendance Management"));
     this.expressApp.use("/api/v1", router);
   }
 
