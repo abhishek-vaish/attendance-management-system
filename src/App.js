@@ -6,6 +6,7 @@ require("dotenv").config();
 const connection = require("./database/connection");
 const authRouter = require("./routes/authentication.routes");
 const userRouter = require("./routes/user.routes");
+const punchTimeRouter = require("./routes/punchtime.routes");
 
 class App {
   expressApp;
@@ -18,6 +19,7 @@ class App {
     connection.connection.authenticate();
     this.expressApp.use("/api/v1", authRouter);
     this.expressApp.use("/api/v1", userRouter);
+    this.expressApp.use("/api/v1", punchTimeRouter);
   }
 
   listen() {

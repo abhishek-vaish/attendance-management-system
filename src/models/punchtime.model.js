@@ -1,8 +1,9 @@
 const Sequelize = require("sequelize");
+
 const { connection } = require("../database/connection");
 const Users = require("./users.model");
 
-const PunchTime = connection.sequelize.define("PunchTime", {
+const PunchTimes = connection.sequelize.define("PunchTimes", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -11,12 +12,10 @@ const PunchTime = connection.sequelize.define("PunchTime", {
   user: { type: Sequelize.INTEGER },
   punch_start_time: { type: Sequelize.TIME },
   punch_end_time: { type: Sequelize.TIME },
-  date: { type: Sequelize.DATE },
+  date: { type: Sequelize.DATEONLY },
 });
 
-PunchTime.associate = (models) => {
-  Users.hasMany(models.PunchTime, { foreignKey: "user" });
-  PunchTime.belongsTo(models.Users, { foreignKey: "user" });
-};
+Users.hasMany(PunchTimes, { foreignKey: "user" });
+PunchTimes.belongsTo(Users, { foreignKey: "user" });
 
-module.exports = PunchTime;
+module.exports = PunchTimes;

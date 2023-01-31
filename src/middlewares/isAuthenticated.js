@@ -1,7 +1,8 @@
-const Token = require("../models/Token.model");
+const Authentication = require("../models/authentication.model");
+const Token = require("../models/token.model");
 
-exports.isAuthenticated = (req, res, next) => {
-  const authHeader = req.headers["authorization"];
+exports.isAuthenticated = async (req, res, next) => {
+  const authHeader = await req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token === null) {
     res.status(401).json({ message: "Unauthorized" });
@@ -14,8 +15,7 @@ exports.getUser = async (req, res, next) => {
   const token = req.token;
   const authenticatedUser = await Token.findOne({
     where: { token: token },
-    attributes: ["Authentication.user"],
-    include: { model: "Authentication" },
+    include: { model: Authentication },
   });
 
   if (authenticatedUser === null) {

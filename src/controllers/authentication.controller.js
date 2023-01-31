@@ -7,11 +7,11 @@ const { hash, decrypt } = require("../resources");
 
 exports.signup = async (req, res) => {
   try {
-    const authCheck = Authentication.findOne({
+    const authCheck = await Authentication.findOne({
       where: { username: req.body["username"] },
       attributes: ["id"],
     });
-    if (authCheck === null) {
+    if (authCheck !== null) {
       res.status(406).json({ message: "Username already exist." });
     } else {
       var user = await Users.create({

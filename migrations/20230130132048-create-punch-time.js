@@ -9,10 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      user: { type: Sequelize.INTEGER, references: { model: "Users" } },
+      user: {
+        type: Sequelize.INTEGER,
+        references: { model: "Users", key: "id" },
+      },
       punch_start_time: { type: Sequelize.TIME },
       punch_end_time: { type: Sequelize.TIME },
-      date: { type: Sequelize.DATE },
+      date: { type: Sequelize.DATEONLY },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

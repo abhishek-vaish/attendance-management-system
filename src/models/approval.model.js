@@ -20,15 +20,13 @@ const Approvals = connection.sequelize.define("Approvals", {
   },
 });
 
-Approvals.associate = (models) => {
-  Approvals.hasOne(models.Leave, { foreignKey: "leave" });
-  Leave.belongsTo(models.Approvals, { foreignKey: "leave" });
+Approvals.hasOne(Leave, { foreignKey: "leave" });
+Leave.belongsTo(Approvals, { foreignKey: "leave" });
 
-  Users.hasMany(models.Leave, { foreignKey: "report_manager" });
-  Leave.belongsTo(models.Users, { foreignKey: "report_manager" });
+Users.hasMany(Leave, { foreignKey: "report_manager" });
+Leave.belongsTo(Users, { foreignKey: "report_manager" });
 
-  Users.hasMany(models.Leave, { foreignKey: "project_manager" });
-  Leave.belongsTo(models.Users, { foreignKey: "project_manager" });
-};
+Users.hasMany(Leave, { foreignKey: "project_manager" });
+Leave.belongsTo(Users, { foreignKey: "project_manager" });
 
 module.exports = Approvals;
