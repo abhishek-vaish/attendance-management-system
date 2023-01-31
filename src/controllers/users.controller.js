@@ -1,4 +1,4 @@
-const Token = require("../models/Token.model");
+const Token = require("../models/token.model");
 const Authentication = require("../models/authentication.model");
 const Users = require("../models/users.model");
 

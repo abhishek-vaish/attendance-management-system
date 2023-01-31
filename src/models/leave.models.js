@@ -12,10 +12,10 @@ const Leave = connection.sequelize.define("Leave", {
     type: Sequelize.INTEGER,
   },
   leave_start_date: {
-    type: Sequelize.DATE,
+    type: Sequelize.DATEONLY,
   },
   leave_end_date: {
-    type: Sequelize.DATE,
+    type: Sequelize.DATEONLY,
   },
   leave_type: {
     type: Sequelize.ENUM(
@@ -35,13 +35,11 @@ const Leave = connection.sequelize.define("Leave", {
     type: Sequelize.BOOLEAN,
   },
   approval_date: {
-    type: Sequelize.DATE,
+    type: Sequelize.DATEONLY,
   },
 });
 
-Leave.associate = (models) => {
-  Users.hasMany(models.Leave, { foreignKey: "user" });
-  Leave.belongsTo(models.Users, { foreignKey: "user" });
-};
+Users.hasMany(Leave, { foreignKey: "user" });
+Leave.belongsTo(Users, { foreignKey: "user" });
 
 module.exports = Leave;

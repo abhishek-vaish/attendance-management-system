@@ -36,11 +36,10 @@ const Users = connection.sequelize.define("Users", {
   },
 });
 
-Users.associate = (models) => {
-  Departments.hasMany(models.Users, { foreignKey: "department" });
-  Users.belongsTo(models.Departments, { foreignKey: "department" });
+Departments.hasMany(Users, { foreignKey: "department" });
+Users.belongsTo(Departments, { foreignKey: "department" });
 
-  Positions.hasMany(models.Users, { foreignKey: "position" });
-  Users.belongsTo(models.Positions, { foreignKey: "position" });
-};
+Positions.hasMany(Users, { foreignKey: "position" });
+Users.belongsTo(Positions, { foreignKey: "position" });
+
 module.exports = Users;

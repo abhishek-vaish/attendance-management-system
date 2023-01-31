@@ -17,10 +17,10 @@ module.exports = {
         },
       },
       leave_start_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       leave_end_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       leave_type: {
         type: Sequelize.ENUM(
@@ -40,7 +40,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
       },
       approval_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       createdAt: {
         type: Sequelize.DATE,
