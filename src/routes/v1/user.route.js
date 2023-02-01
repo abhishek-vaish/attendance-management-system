@@ -1,11 +1,12 @@
-const { Router } = require("express");
-const { isAuthenticated, getUser } = require("../middlewares/isAuthenticated");
-const {
+import { Router } from "express";
+
+import { isAuthenticated, getUser } from "../../middlewares/isAuthenticated";
+import {
   updateUser,
   updateAuthentication,
   deleteUser,
   deleteAuthentication,
-} = require("../controllers/users.controller");
+} from "../../controllers/users.controller";
 
 const router = Router();
 
@@ -14,4 +15,4 @@ router.patch("/update-authentication", isAuthenticated, updateAuthentication);
 router.patch("/delete-user", [isAuthenticated, getUser], deleteUser);
 router.patch("/delete-authentication", isAuthenticated, deleteAuthentication);
 
-module.exports = router;
+export default router;

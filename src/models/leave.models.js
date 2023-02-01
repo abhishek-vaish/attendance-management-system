@@ -1,8 +1,8 @@
-const Sequelize = require("sequelize");
-const { connection } = require("../database/connection");
-const Users = require("./users.model");
+import Sequelize from "sequelize";
+import Users from "./users.model";
+import sequelize from "../database";
 
-const Leave = connection.sequelize.define("Leave", {
+const Leave = sequelize.define("Leave", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -42,4 +42,4 @@ const Leave = connection.sequelize.define("Leave", {
 Users.hasMany(Leave, { foreignKey: "user" });
 Leave.belongsTo(Users, { foreignKey: "user" });
 
-module.exports = Leave;
+export default Leave;

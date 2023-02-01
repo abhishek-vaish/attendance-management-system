@@ -1,7 +1,7 @@
-const Sequelize = require("sequelize");
-const { connection } = require("../database/connection");
+import Sequelize from "sequelize";
+import sequelize from "../database";
 
-const Positions = connection.sequelize.define("Positions", {
+const Positions = sequelize.define("Positions", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -14,4 +14,4 @@ const Positions = connection.sequelize.define("Positions", {
   is_active: Sequelize.BOOLEAN,
 });
 
-module.exports = Positions;
+export default Positions;

@@ -1,11 +1,11 @@
-const { v4 } = require("uuid");
+import { v4 } from "uuid";
 
-const Users = require("../models/users.model");
-const Authentication = require("../models/authentication.model");
-const Token = require("../models/token.model");
-const { hash, decrypt } = require("../resources");
+import Users from "../models/users.model";
+import Authentication from "../models/authentication.model";
+import Token from "../models/token.model";
+import { hash, decrypt } from "../utilities";
 
-exports.signup = async (req, res) => {
+export const signup = async (req, res) => {
   try {
     const authCheck = await Authentication.findOne({
       where: { username: req.body["username"] },
@@ -41,7 +41,7 @@ exports.signup = async (req, res) => {
   }
 };
 
-exports.signin = async (req, res) => {
+export const signin = async (req, res) => {
   const loginUser = await Authentication.findOne({
     where: { username: req.body.username },
     attributes: ["id", "password"],
@@ -65,7 +65,7 @@ exports.signin = async (req, res) => {
   }
 };
 
-exports.signout = async (req, res) => {
+export const signout = async (req, res) => {
   console.log(req.token);
   const token = req.token;
 

@@ -1,9 +1,9 @@
-const Sequelize = require("sequelize");
+import Sequelize from "sequelize";
 
-const { connection } = require("../database/connection");
-const Users = require("./users.model");
+import Users from "./users.model";
+import sequelize from "../database";
 
-const PunchTimes = connection.sequelize.define("PunchTimes", {
+const PunchTimes = sequelize.define("PunchTimes", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -18,4 +18,4 @@ const PunchTimes = connection.sequelize.define("PunchTimes", {
 Users.hasMany(PunchTimes, { foreignKey: "user" });
 PunchTimes.belongsTo(Users, { foreignKey: "user" });
 
-module.exports = PunchTimes;
+export default PunchTimes;

@@ -1,4 +1,4 @@
-exports.currDate = () => {
+export const currDate = () => {
   const currentDate = new Date();
 
   const reqDate =
@@ -14,7 +14,7 @@ exports.currDate = () => {
   return reqDate;
 };
 
-exports.currTime = () => {
+export const currTime = () => {
   const currentDate = new Date();
 
   const reqTime =
