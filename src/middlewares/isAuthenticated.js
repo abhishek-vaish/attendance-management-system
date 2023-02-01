@@ -1,7 +1,7 @@
-const Authentication = require("../models/authentication.model");
-const Token = require("../models/token.model");
+import Authentication from "../models/authentication.model";
+import Token from "../models/token.model";
 
-exports.isAuthenticated = async (req, res, next) => {
+export const isAuthenticated = async (req, res, next) => {
   const authHeader = await req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token === null) {
@@ -11,7 +11,7 @@ exports.isAuthenticated = async (req, res, next) => {
   next();
 };
 
-exports.getUser = async (req, res, next) => {
+export const getUser = async (req, res, next) => {
   const token = req.token;
   const authenticatedUser = await Token.findOne({
     where: { token: token },
