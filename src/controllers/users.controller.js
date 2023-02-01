@@ -1,8 +1,8 @@
-const Token = require("../models/token.model");
-const Authentication = require("../models/authentication.model");
-const Users = require("../models/users.model");
+import Token from "../models/token.model";
+import Authentication from "../models/authentication.model";
+import Users from "../models/users.model";
 
-exports.updateUser = async (req, res) => {
+export const updateUser = async (req, res) => {
   const user = req.user;
 
   try {
@@ -15,7 +15,7 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-exports.updateAuthentication = async (req, res) => {
+export const updateAuthentication = async (req, res) => {
   const token = req.token;
 
   const authenticatedUser = await Token.findOne({
@@ -34,7 +34,7 @@ exports.updateAuthentication = async (req, res) => {
   }
 };
 
-exports.deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
   const user = req.user;
 
   try {
@@ -45,7 +45,7 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-exports.deleteAuthentication = async (req, res) => {
+export const deleteAuthentication = async (req, res) => {
   const token = req.token;
 
   const authenticatedUser = await Token.findOne({

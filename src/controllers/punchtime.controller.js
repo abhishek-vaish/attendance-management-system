@@ -1,9 +1,9 @@
-const { Op } = require("sequelize");
-const PunchTimes = require("../models/punchtime.model");
-const { currTime, currDate } = require("../resources/getDate");
-const moment = require("moment/moment");
+import { Op } from "sequelize";
 
-exports.punchStart = async (req, res) => {
+import PunchTimes from "../models/punchtime.model";
+import { currDate, currTime } from "../utilities/getDate";
+
+export const punchStart = async (req, res) => {
   const user = req.user;
 
   const ptRecord = await PunchTimes.findOne({
@@ -27,7 +27,7 @@ exports.punchStart = async (req, res) => {
   }
 };
 
-exports.punchEnd = async (req, res) => {
+export const punchEnd = async (req, res) => {
   const user = req.user;
 
   const ptRecord = await PunchTimes.findOne({
