@@ -1,8 +1,9 @@
-const Sequelize = require("sequelize");
-const { connection } = require("../database/connection");
-const Users = require("./users.model");
+import Sequelize from "sequelize";
 
-const WorkFromHome = connection.sequelize.define("WorkFromHome", {
+import Users from "../models/users.model";
+import sequelize from "../database";
+
+const WorkFromHome = sequelize.define("WorkFromHome", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -22,4 +23,4 @@ const WorkFromHome = connection.sequelize.define("WorkFromHome", {
 Users.hasMany(WorkFromHome, { foreignKey: "user" });
 WorkFromHome.belongsTo(Users, { foreignKey: "user" });
 
-module.exports = WorkFromHome;
+export default WorkFromHome;

@@ -1,8 +1,8 @@
-const Sequelize = require("sequelize");
-const { connection } = require("../database/connection");
-const Users = require("./users.model");
+import Sequelize from "sequelize";
+import Users from "./users.model";
+import sequelize from "../database";
 
-const Authentication = connection.sequelize.define("Authentication", {
+const Authentication = sequelize.define("Authentication", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -27,4 +27,4 @@ const Authentication = connection.sequelize.define("Authentication", {
 Users.hasOne(Authentication, { foreignKey: { name: "user" } });
 Authentication.belongsTo(Users, { foreignKey: { name: "user" } });
 
-module.exports = Authentication;
+export default Authentication;

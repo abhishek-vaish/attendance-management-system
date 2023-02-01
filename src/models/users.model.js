@@ -1,9 +1,10 @@
-const Sequelize = require("sequelize");
-const { connection } = require("../database/connection");
-const Departments = require("./department.model");
-const Positions = require("./position.model");
+import Sequelize from "sequelize";
 
-const Users = connection.sequelize.define("Users", {
+import Departments from "../models/department.model";
+import Positions from "../models/position.model";
+import sequelize from "../database";
+
+const Users = sequelize.define("Users", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -42,4 +43,4 @@ Users.belongsTo(Departments, { foreignKey: "department" });
 Positions.hasMany(Users, { foreignKey: "position" });
 Users.belongsTo(Positions, { foreignKey: "position" });
 
-module.exports = Users;
+export default Users;
