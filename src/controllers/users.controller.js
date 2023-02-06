@@ -34,18 +34,18 @@ export const updateAuthentication = async (req, res) => {
   }
 };
 
-export const deleteUser = async (req, res) => {
+export const deactivateUser = async (req, res) => {
   const user = req.user;
 
   try {
     await Users.update({ is_active: false }, { where: { id: user } });
-    res.status(201).json({ success: "Ok" });
+    res.status(200).json({ success: "Ok" });
   } catch (err) {
     res.status(401).json({ message: err.message });
   }
 };
 
-export const deleteAuthentication = async (req, res) => {
+export const deactivateAuthentication = async (req, res) => {
   const token = req.token;
 
   const authenticatedUser = await Token.findOne({
@@ -58,7 +58,7 @@ export const deleteAuthentication = async (req, res) => {
       { is_active: false },
       { where: { id: authenticatedUser.toJSON()["authentication"] } }
     );
-    res.status(201).json({ success: "Ok" });
+    res.status(200).json({ success: "Ok" });
   } catch (err) {
     res.status(401).json({ message: err.message });
   }

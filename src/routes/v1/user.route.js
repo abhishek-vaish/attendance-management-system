@@ -4,15 +4,19 @@ import { isAuthenticated, getUser } from "../../middlewares/isAuthenticated";
 import {
   updateUser,
   updateAuthentication,
-  deleteUser,
-  deleteAuthentication,
+  deactivateUser,
+  deactivateAuthentication,
 } from "../../controllers/users.controller";
 
 const router = Router();
 
 router.patch("/update-user", [isAuthenticated, getUser], updateUser);
 router.patch("/update-authentication", isAuthenticated, updateAuthentication);
-router.patch("/delete-user", [isAuthenticated, getUser], deleteUser);
-router.patch("/delete-authentication", isAuthenticated, deleteAuthentication);
+router.patch("/deactivate-user", [isAuthenticated, getUser], deactivateUser);
+router.patch(
+  "/deactivate-authentication",
+  isAuthenticated,
+  deactivateAuthentication
+);
 
 export default router;

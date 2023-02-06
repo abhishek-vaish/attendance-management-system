@@ -1,9 +1,7 @@
 import bcrypt from "bcryptjs";
 
-import { CONFIG } from "../settings";
-
 export const hash = (plainPassword) => {
-  return bcrypt.hashSync(plainPassword, bcrypt.genSaltSync(CONFIG.SALT));
+  return bcrypt.hashSync(plainPassword);
 };
 
 export const decrypt = async (plainPassword, hashPassword) => {

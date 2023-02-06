@@ -2,12 +2,12 @@ import { Router } from "express";
 
 const router = Router();
 
-const {
+import {
   signup,
   signin,
   signout,
-} = require("../../controllers/authentication.controller");
-const { isAuthenticated } = require("../../middlewares/isAuthenticated");
+} from "../../controllers/authentication.controller";
+import { isAuthenticated } from "../../middlewares/isAuthenticated";
 
 router.post("/register", signup);
 router.post("/login", signin);

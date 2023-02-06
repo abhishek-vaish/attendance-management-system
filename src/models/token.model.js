@@ -11,6 +11,7 @@ const Token = sequelize.define("Token", {
   },
   authentication: {
     type: Sequelize.INTEGER,
+    unique: true,
   },
   token: {
     type: Sequelize.STRING,

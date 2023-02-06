@@ -11,6 +11,7 @@ module.exports = {
       },
       authentication: {
         type: Sequelize.INTEGER,
+        unique: true,
         references: {
           model: "Authentication",
           key: "id",

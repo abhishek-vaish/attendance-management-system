@@ -11,7 +11,7 @@ module.exports = {
   test: {
     username: process.env.USER,
     password: process.env.DBPASSWORD,
-    database: process.env.DATABASE,
+    database: "AttendanceManagement_Test",
     host: process.env.HOST,
     dialect: process.env.DIALECT,
   },

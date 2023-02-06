@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 
+require("dotenv").config();
+
 export const BASE_DIR = path.dirname(__dirname);
 export const ENVIRONMENT = process.env.AMS_ENV || "development";
 export const CONFIG = JSON.parse(
@@ -9,4 +11,5 @@ export const CONFIG = JSON.parse(
     "utf-8"
   )
 );
+
 export default { ENVIRONMENT: CONFIG.DATABASE };
